@@ -37,17 +37,19 @@ function ObjectConstruct(filename, left, top) {
     this.top = top;
 }
 
-
-
-
 ObjectConstruct.prototype.startAnimation = function(fct, interval) {
     if(this._clock) window.clearInterval(this._clock);
     var _this = this;
     this._clock = window.setInterval(function() {
         fct(_this);
     }, interval);
-}
+};
 
 ObjectConstruct.prototype.stopAnimation = function() {
     window.clearInterval(this._clock);
+};
+
+
+ObjectConstruct.prototype.checkCollision = function(other) {
+    return ! ((this.top + this._node.height < other.top) || (this.top > (other.top + other._node.height)) || (this.left + this._node.width < other.left) || (this.left > (other.left + other._node.width)));
 }
