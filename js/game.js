@@ -1,4 +1,4 @@
-function Strite(filename, left, top) {
+function ObjectConstruct(filename, left, top) {
     this._node = document.createElement("img");
     this._node.src = filename;
     this._node.style.position = "absolute";
@@ -37,16 +37,17 @@ function Strite(filename, left, top) {
     this.top = top;
 }
 
-Sprite.prototype.startAnimation = function(fct, interval) {
-    if(this._clock) {
-        window.clearInterval(this._clock);
-    }
+
+
+
+ObjectConstruct.prototype.startAnimation = function(fct, interval) {
+    if(this._clock) window.clearInterval(this._clock);
     var _this = this;
     this._clock = window.setInterval(function() {
         fct(_this);
     }, interval);
 }
 
-Sprite.prototype.stopAnimation = function() {
+ObjectConstruct.prototype.stopAnimation = function() {
     window.clearInterval(this._clock);
 }
