@@ -24,7 +24,29 @@ function Strite(filename, left, top) {
         }
     });
 
+    Object.defineProperty(this, "display", {
+        get: function() {
+            return this._node.style.display;
+        },
+        set: function(value) {
+            this._node.style.display = value;
+        }
+    });
+
     this.left = left;
     this.top = top;
+}
 
+Sprite.prototype.startAnimation = function(fct, interval) {
+    if(this._clock) {
+        window.clearInterval(this._clock);
+    }
+    var _this = this;
+    this._clock = window.setInterval(function() {
+        fct(_this);
+    }, interval);
+}
+
+Sprite.prototype.stopAnimation = function() {
+    window.clearInterval(this._clock);
 }
