@@ -19,15 +19,19 @@ function boardEvent(event) {
     //deplacements
     if(event.keyCode == 37 ) { /*deplacement a gauche*/
         vaisseau1.left -= 10;
+        collisionWithAlien();
     } 
     else if(event.keyCode == 39 ){ /*deplacement a droite*/
         vaisseau1.left += 10;
+        collisionWithAlien();
     }
     else if(event.keyCode == 38 ){ /*deplacement en haut*/
         vaisseau1.top -= 10;
+        collisionWithAlien();
     }
     else if(event.keyCode == 40 ){ /*deplacement en bas*/
         vaisseau1.top += 10;
+        collisionWithAlien();
     }
 
     /* pour la delimitaion du vaisseau par rapport la surface du jeux*/
@@ -81,7 +85,6 @@ function shootMissile() {
             var y = alien.top - alien._node.height;
             
             explosion(x, y);
-            //setInterval(function() {var explosion = new ObjectConstruct("images/explosion.gif", x, y);}, 1000);
 
             userMissile.stopAnimation();
             alien.stopAnimation();
@@ -92,9 +95,26 @@ function shootMissile() {
     } 
 }
 
-function collision(missile, alien) {
+//Collision entre vaisseau et alien
+function collisionWithAlien() {
+    for(var i = 1 ; i <= 5 ; i++) {
+        var alien = window["ennemie" + i];
+        if(collision(vaisseau1, alien)) {
+            var x = alien.left - alien._node.width;
+            var y = alien.top - alien._node.height;
 
-    if((missile.top + missile._node.height) < alien.top || missile.top > (alien.top + alien._node.height) || (missile.left + missile._node.width) < alien.left || missile.left > (alien.left + alien._node.width)) {
+            explosion(x, y);
+
+            vaisseau1.display = "none";
+            alien.display = "none";
+        }
+    } 
+}
+
+// collision entre corps1(vaisseau ou missile) et alien
+function collision(corps1, alien) {
+
+    if((corps1.top + corps1._node.height) < alien.top || corps1.top > (alien.top + alien._node.height) || (corps1.left + corps1._node.width) < alien.left || corps1.left > (alien.left + alien._node.width)) {
         return false;
     }
     else {
