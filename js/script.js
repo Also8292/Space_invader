@@ -57,68 +57,14 @@ function shootByMouse(event) {
     }
 }
 
-
-/**
- * Momo code
- */
 //Creation des ennemies
-var ennemi1 = new ObjectConstruct('images/ennemie1.png',50,50);
-var ennemi2 = new ObjectConstruct('images/ennemie1.png',350,50);
-var ennemi3 = new ObjectConstruct('images/ennemie1.png',650,50);
-var ennemi4 = new ObjectConstruct('images/ennemie1.png',950,50);
-var ennemi5 = new ObjectConstruct('images/ennemie1.png',1250,50);
-var ennemi6 = new ObjectConstruct('images/ennemie1.png',950,50);
-var ennemi7 = new ObjectConstruct('images/ennemie1.png',1250,50);
+var ennemie1 = new ObjectConstruct("images/ennemie1.png", 50, 50);
+var ennemie2 = new ObjectConstruct("images/ennemie1.png", 350, 50);
+var ennemie3 = new ObjectConstruct("images/ennemie1.png", 650, 50);
+var ennemie4 = new ObjectConstruct("images/ennemie1.png", 950, 50);
+var ennemie5 = new ObjectConstruct("images/ennemie1.png", 1250, 50);
 
-/*
-setTimeout(function(){
-      ennemi1.style.transition = '2s';
-},2000)
-setTimeout(function(){
-    ennemi2.style.transition = '2s';
-},2050)
-setTimeout(function(){
-    ennemi3.style.transition = '2s';
-},2000)
-setTimeout(function(){
-    ennemi4.style.transition = '5s';
-},3000)
-setTimeout(function(){
-    ennemi5.style.transition = '5s';
-},3100)
-setTimeout(function(){
-    ennemi6.style.transition = '7s';
-},4000)
-setTimeout(function(){
-    ennemi7.style.transition = '7s';
-},4000)
-*/
 
-function moveAlien() {
-    for(var i = 0 ; i < 7 ; i++) {
-        var alien = window["ennemi" + i];
-ObjectConstruct.prototype.startAnimation = function(fct, interval) {
-        alien.startAnimation(moveAlienLeft, 1000);
-    }
-}
-
-function moveAlienLeft() {
-    alien.letf += 10;
-    if(alien.left > document.body.clientWidth - alien._node.width) {
-        alien.top += alien.top;
-        moveAlienRight();
-    }
-}
-
-function moveAlienRight() {
-    alien.letf -= 10;
-    if(alien.left < 0) {
-        alien.top += alien.top;
-        moveAlienLeft();
-    }
-}
-
-moveAlien();
 
 function shootMissile() {
     userMissile.top -= 10;
@@ -126,14 +72,48 @@ function shootMissile() {
         userMissile.stopAnimation();
         userMissile.display = "none";
     }
+    //var alien123 = window["ennemie" + 1];
+    //console.log("TEST : " + alien123.top);
 
-    for(var i = 0 ; i <= 7 ; i++) {
-        var alien = window["ennemi" + i];
-        if(userMissile.checkCollision(alien)) {
-            userMissile.stopAnimation();
-            alien.stopAnimation();
-            alien.display = "none";
-            userMissile.display = "none";
+    for(var i = 0 ; i <= 5 ; i++) {        
+        if(collision(userMissile, window["ennemie" + i])) {
+            /*userMissile.stopAnimation();
+            alien123.stopAnimation();
+            alien123.display = "none";
+            userMissile.display = "none";*/
+            console.log("GOOD");
         }
     }
 }
+
+function collision(missile, alien) {
+
+    if((missile.top + missile._node.height) < alien.top || missile.top > (alien.top + alien._node.height) || (missile.left + missile._node.width) < alien.left || missile.left > (alien.left + alien._node.width)) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+//deplacement des ennemies vers la droite
+function moveEnnemiToRight(ennemi){
+    ennemi.left += 3;
+    if (ennemi.left > document.body.clientWidth - ennemi._node.width) {
+      ennemi.top += 50;
+      ennemi.startAnimation( moveEnnemiToLeft, 20 );
+    }
+  }
+  //deplacement des ennemies vers la gauche
+  function moveEnnemiToLeft(ennemi){
+    ennemi.left -= 3;
+    if (ennemi.left <= 0) {
+      ennemi.top += 50;
+      ennemi.startAnimation( moveEnnemiToRight, 20 );
+    }
+  }
+  ennemie1.startAnimation(moveEnnemiToRight, 20);
+  ennemie2.startAnimation(moveEnnemiToRight, 20);
+  ennemie3.startAnimation(moveEnnemiToRight, 20);
+  ennemie4.startAnimation(moveEnnemiToRight, 20);
+  ennemie5.startAnimation(moveEnnemiToRight, 20);

@@ -1,3 +1,5 @@
+// constructeur d'objet
+
 function ObjectConstruct(filename, left, top) {
     this._node = document.createElement("img");
     this._node.src = filename;
@@ -50,9 +52,9 @@ ObjectConstruct.prototype.stopAnimation = function() {
 };
 
 
-ObjectConstruct.prototype.checkCollision = function(other) {
-    return ! ( (this.top + this._node.height < other.top) || 
-    this.top > (other.top + other._node.height) || 
-    (this.left + this._node.width < other.left) || 
-    this.left > (other.left + other._node.width));
+ObjectConstruct.prototype.checkCollision = function(alien) {
+    return ! ( (this.top + this._node.height < alien.top) ||
+                this.top > (alien.top + alien._node.height) ||
+                (this.left + this._node.width < alien.left) ||
+                this.left > (alien.left + alien._node.width));
 }
