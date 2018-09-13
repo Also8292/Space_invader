@@ -71,19 +71,21 @@ function shootMissile() {
     if(userMissile.top < -25) {
         userMissile.stopAnimation();
         userMissile.display = "none";
-    }
-    //var alien123 = window["ennemie" + 1];
-    //console.log("TEST : " + alien123.top);
+    }      
+    for(var i = 1 ; i <= 5 ; i++) {
+        var alien = window["ennemie" + i];
 
-    for(var i = 0 ; i <= 5 ; i++) {        
-        if(collision(userMissile, window["ennemie" + i])) {
-            /*userMissile.stopAnimation();
-            alien123.stopAnimation();
-            alien123.display = "none";
-            userMissile.display = "none";*/
-            console.log("GOOD");
+        if(alien.display == "none") continue;
+
+        if(collision(userMissile, alien)) {
+            userMissile.stopAnimation();
+            alien.stopAnimation();
+            alien.display = "none";
+            userMissile.display = "none";
+
         }
     }
+    
 }
 
 function collision(missile, alien) {
@@ -103,17 +105,16 @@ function moveEnnemiToRight(ennemi){
       ennemi.top += 50;
       ennemi.startAnimation( moveEnnemiToLeft, 20 );
     }
-  }
+}
   //deplacement des ennemies vers la gauche
-  function moveEnnemiToLeft(ennemi){
-    ennemi.left -= 3;
+function moveEnnemiToLeft(ennemi){
+ennemi.left -= 3;
     if (ennemi.left <= 0) {
-      ennemi.top += 50;
-      ennemi.startAnimation( moveEnnemiToRight, 20 );
+        ennemi.top += 50;
+        ennemi.startAnimation( moveEnnemiToRight, 20 );
     }
-  }
-  ennemie1.startAnimation(moveEnnemiToRight, 20);
-  ennemie2.startAnimation(moveEnnemiToRight, 20);
-  ennemie3.startAnimation(moveEnnemiToRight, 20);
-  ennemie4.startAnimation(moveEnnemiToRight, 20);
-  ennemie5.startAnimation(moveEnnemiToRight, 20);
+}
+
+for (var i = 1; i <= 5; i++) {
+    window["ennemie"+i].startAnimation(moveEnnemiToRight, 20);
+}
