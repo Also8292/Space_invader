@@ -64,3 +64,41 @@ function shootMissile(missile) {
         userMissile.display = "none";
     }
 }
+
+/**
+ * Momo code
+ */
+//Creation des ennemies
+// var ennemi1 = new Strite('images/ennemie1.png',50,50);
+// var ennemi1 = new Strite('images/ennemie1.png',350,50);
+// var ennemi1 = new Strite('images/ennemie1.png',650,50);
+// var ennemi1 = new Strite('images/ennemie1.png',950,50);
+// var ennemi1 = new Strite('images/ennemie1.png',1250,50);
+setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',50,50);
+      ennemi1.style.transition = '2s';
+  },2000)
+  setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',950,50);
+      ennemi1.style.transition = '2s';
+  },2050)
+  setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',400,100);
+      ennemi1.style.transition = '2s';
+  },2000)
+  setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',350,70);
+      ennemi1.style.transition = '5s';
+  },3000)
+  setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',250,80);
+      ennemi1.style.transition = '5s';
+  },3100)
+  setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',650,30);
+      ennemi1.style.transition = '7s';
+  },4000)
+  setTimeout(function(){
+    var ennemi1 = new ObjectConstruct('images/ennemie1.png',700,20);
+      ennemi1.style.transition = '7s';
+  },4000)
