@@ -1,14 +1,14 @@
-
+/*
 var soundFond;
 soundFond = new sound("audios/fond_sonore.mp3");
-soundFond.play();
+soundFond.play();*/
 
 var vaisseau1 = new ObjectConstruct("images/vaisseau1.png", (document.body.clientWidth / 2) - 37, 550);
 var userMissile = new ObjectConstruct("images/missile.png", 0, 0);
-var ennemyMissile2 = new ObjectConstruct("images/missile2.png", 0, 20);
 
 userMissile.display = "none";
-ennemyMissile2.display = "none";
+//alienMissile.display = "none";
+//shootAlienMissile();
 
 function boardEvent(event) {
     //tir missile
@@ -114,6 +114,22 @@ function shootMissile() {
             
         }
     } 
+}
+
+function shootAlienMissile() {
+
+    var alienMissile;
+
+    for(var i = 1 ; i <= 5 ; i++) {
+        var alien = window["ennemie" + i];
+
+        var x = alien.left + (alien._node.width / 2);
+        var y = alien.top + (alien._node.height / 2);
+        
+        alienMissile = new ObjectConstruct("images/missile2.png", x, y);
+        setInterval(function() {alienMissile.startAnimation(function() {alienMissile.top += 10;}, 10);}, 3000);
+
+    }
 }
 
 //Collision entre vaisseau et alien
