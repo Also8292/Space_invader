@@ -74,18 +74,22 @@ function shootMissile() {
     }      
     for(var i = 1 ; i <= 5 ; i++) {
         var alien = window["ennemie" + i];
-
         if(alien.display == "none") continue;
 
         if(collision(userMissile, alien)) {
+            var x = alien.left - alien._node.width;
+            var y = alien.top - alien._node.height;
+            
+            explosion(x, y);
+            //setInterval(function() {var explosion = new ObjectConstruct("images/explosion.gif", x, y);}, 1000);
+
             userMissile.stopAnimation();
             alien.stopAnimation();
             alien.display = "none";
             userMissile.display = "none";
-
+            
         }
-    }
-    
+    } 
 }
 
 function collision(missile, alien) {
@@ -117,4 +121,11 @@ ennemi.left -= 3;
 
 for (var i = 1; i <= 5; i++) {
     window["ennemie"+i].startAnimation(moveEnnemiToRight, 20);
+}
+
+//Explosion 
+function explosion(x, y) {
+    var explosion = new ObjectConstruct("images/explosion.gif", x, y);
+
+    setTimeout(function() {explosion.display = "none";}, 500);
 }
