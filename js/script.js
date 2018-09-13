@@ -1,3 +1,8 @@
+
+var soundFond;
+soundFond = new sound("audios/fond_sonore.mp3");
+soundFond.play();
+
 var vaisseau1 = new ObjectConstruct("images/vaisseau1.png", (document.body.clientWidth / 2) - 37, 550);
 var userMissile = new ObjectConstruct("images/missile.png", 0, 0);
 var ennemyMissile2 = new ObjectConstruct("images/missile2.png", 0, 20);
@@ -13,6 +18,10 @@ function boardEvent(event) {
             userMissile.left = vaisseau1.left + (vaisseau1._node.width - userMissile._node.width) / 2;
             userMissile.top = vaisseau1.top;
             userMissile.startAnimation(shootMissile, 10);
+
+            var tir;
+            tir = new sound("audios/tir_missile.mp3");
+            tir.play();
         }
     }
 
@@ -58,6 +67,12 @@ function shootByMouse(event) {
         userMissile.left = vaisseau1.left + (vaisseau1._node.width - userMissile._node.width) / 2;
         userMissile.top = vaisseau1.top;
         userMissile.startAnimation(shootMissile, 10);
+
+        var explosionSound;
+
+        explosionSound = new sound("audios/tir_missile.mp3");
+
+        explosionSound.play();
     }
 }
 
@@ -86,6 +101,12 @@ function shootMissile() {
             
             explosion(x, y);
 
+            var explosionSound;
+
+            explosionSound = new sound("audios/explosion_sound.mp3");
+
+            explosionSound.play();
+
             userMissile.stopAnimation();
             alien.stopAnimation();
             alien.display = "none";
@@ -107,6 +128,12 @@ function collisionWithAlien() {
 
             vaisseau1.display = "none";
             alien.display = "none";
+
+            var explosionSound;
+
+            explosionSound = new sound("audios/explosion_sound.mp3");
+
+            explosionSound.play();
         }
     } 
 }
@@ -148,4 +175,21 @@ function explosion(x, y) {
     var explosion = new ObjectConstruct("images/explosion.gif", x, y);
 
     setTimeout(function() {explosion.display = "none";}, 500);
+}
+
+
+//sound
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
 }
