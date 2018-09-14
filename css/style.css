@@ -23,10 +23,10 @@ body{
     position: absolute;
     background-color: #df3232;
     text-align: center;
-    vertical-align: super;
     padding-top: 75px;
     border-radius: 50px;
     box-shadow: 0px 0px 10px 3px #ececec;
+    display: block;
 }
 
 #accueil h1 {

@@ -15,6 +15,15 @@ var ennemie10;
 //accueil start game
 function startGame() {
 
+    //var tir;
+    //tir = new sound("audios/fond_sonore.mp3");
+    //tir.play();
+
+        //Creation des coeurs de vie
+    var coeurs1 = new ObjectConstruct("images/coeurs.png", (document.body.clientWidth - 37), -1);
+    var coeurs2 = new ObjectConstruct("images/coeurs.png", (document.body.clientWidth - 57), -1);
+    var coeurs3 = new ObjectConstruct("images/coeurs.png", (document.body.clientWidth - 77), -1);
+
     vaisseau1 = new ObjectConstruct("images/vaisseau1.png", (document.body.clientWidth / 2) - 37, 550);
     userMissile = new ObjectConstruct("images/missile.png", 0, 0);
 
@@ -40,8 +49,7 @@ function startGame() {
 
     document.querySelector('#accueil').style.display = "none";
     document.querySelector('#score').style.display = "block";
-    document.querySelector('#score2').innerHTML = 0;
-    
+    document.querySelector('#score2').innerHTML = 0; 
 }
 
 //stop 
@@ -67,8 +75,14 @@ function victoiry() {
 function boardEvent(event) {
     //jouer en appuyant sur la touche entrée
     if(event.keyCode == 13) {
+        if(document.querySelector('#accueil').display == "block") {
+            startGame();
+        }
+        else {
+            //location.reload();
+            console.log(document.querySelector('#accueil').display);
+        }
         
-        startGame();
     }
 
     //tir missile
