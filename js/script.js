@@ -75,12 +75,11 @@ function victoiry() {
 function boardEvent(event) {
     //jouer en appuyant sur la touche entrée
     if(event.keyCode == 13) {
-        if(document.querySelector('#accueil').display == "block") {
-            startGame();
+        if(document.querySelector('#accueil').display == "none") {
+            location.reload();
         }
         else {
-            //location.reload();
-            console.log(document.querySelector('#accueil').display);
+            startGame();
         }
         
     }
@@ -223,6 +222,7 @@ function shootMissile() {
     }
 }*/
 
+var vie = 0;
 
 //Collision entre vaisseau et alien
 function collisionWithAlien() {
@@ -248,6 +248,8 @@ function collisionWithAlien() {
         }
     } 
 }
+
+
 
 // collision entre corps1(vaisseau ou missile) et alien
 function collision(corps1, alien) {
