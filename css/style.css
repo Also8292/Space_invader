@@ -10,6 +10,11 @@ body{
     overflow: hidden;
 }
 
+#score {
+    color: #ffffff;
+    display: none;
+}
+
 #accueil {
     width: 40%;
     height: 50%;

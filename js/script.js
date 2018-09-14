@@ -27,7 +27,6 @@ function startGame() {
     ennemie3 = new ObjectConstruct("images/ennemie1.png", 650, 30);
     ennemie4 = new ObjectConstruct("images/ennemie1.png", 950, 30);
     ennemie5 = new ObjectConstruct("images/ennemie1.png", 1250, 30);
-
     ennemie6 = new ObjectConstruct("images/ennemie1.png", 110, 150);
     ennemie7 = new ObjectConstruct("images/ennemie1.png", 400, 150);
     ennemie8 = new ObjectConstruct("images/ennemie1.png", 700, 150);
@@ -40,13 +39,13 @@ function startGame() {
     }
 
     document.querySelector('#accueil').style.display = "none";
+    document.querySelector('#score').style.display = "block";
+    document.querySelector('#score2').innerHTML = 0;
     
 }
 
 //stop 
 function stopGame() {
-    //location.reload();
-
     for(var i = 1 ; i <= 10 ; i++) {
         var alien = window["ennemie" + i];
         alien.stopAnimation();
@@ -56,6 +55,12 @@ function stopGame() {
 
 }
 
+//victoire
+function victoiry() {
+    vaisseau1.stopAnimation();
+    vaisseau1.display == "none";
+    document.querySelector('#victoire').style.display = "block";
+}
 
 //evenement du clavier
 
@@ -76,6 +81,19 @@ function boardEvent(event) {
             var tir;
             tir = new sound("audios/tir_missile.mp3");
             tir.play();
+
+            var status = 0;
+
+            for(var i = 1 ; i <= 10 ; i++) {
+                var alien = window["ennemie" + i];
+                if(alien.display == "none") {
+                   status += 1;
+                   document.querySelector("#score2").innerHTML = status * 10;
+                }
+            }
+            if(status == 10) {
+                victoiry();
+            }
         }
     }
 
@@ -165,7 +183,7 @@ function shootAlienMissile() {
 
     var alienMissile;
 
-    for(var i = 1 ; i <= 5 ; i++) {
+    for(var i = 1 ; i <= 10 ; i++) {
         var alien = window["ennemie" + i];
 
         var x = alien.left + (alien._node.width / 2);
@@ -197,6 +215,8 @@ function collisionWithAlien() {
             explosionSound = new sound("audios/explosion_sound.mp3");
 
             explosionSound.play();
+
+            stopGame();
         }
     } 
 }
