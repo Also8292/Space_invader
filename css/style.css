@@ -5,7 +5,133 @@ html, body{
     margin: 0px;
 }
 body{
-    background-image: url(../images/bg1.gif);
+    background-image: url(../images/bg2.gif);
     background-size: cover;
     overflow: hidden;
+}
+
+#accueil {
+    width: 40%;
+    height: 50%;
+    left: 30%;
+    top: 25%;
+    position: absolute;
+    background-color: #df3232;
+    text-align: center;
+    vertical-align: super;
+    padding-top: 75px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px 3px #ececec;
+}
+
+#accueil h1 {
+    color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#accueil button {
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    color: #ffffff;
+    border: none;
+    background-color: #03810a;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px 3px #015706;
+}
+
+#accueil button:hover {
+    background-color: #066121;
+    box-shadow: 0px 0px 10px 3px #066121;
+}
+
+
+#victoire {
+    width: 40%;
+    height: 50%;
+    left: 30%;
+    top: 25%;
+    position: absolute;
+    background-color: none;
+    text-align: center;
+    vertical-align: super;
+    padding-top: 75px;
+    display: none;
+}
+
+#victoire p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 65px;
+    color: #03810a;
+    font-weight: bold;
+    animation: victoire 1s;
+}
+
+@keyframes victoire {
+    from {font-size: 25px}
+    to {font-size: 65px}
+}
+
+#victoire button {
+    width: 150px;
+    height: 50px;
+    color: #ffffff;
+    background-color: #03810a;
+    border: none;
+    font-size: 20px;
+}
+
+#victoire button:hover {
+    background-color: #015706;
+}
+
+
+#gameover {
+    width: 40%;
+    height: 50%;
+    left: 30%;
+    top: 25%;
+    position: absolute;
+    background-color: none;
+    text-align: center;
+    vertical-align: super;
+    padding-top: 75px;
+    display: none;
+}
+
+#gameover p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 65px;
+    color: #ff0000;
+    font-weight: bold;
+    animation: gameover 1s;
+}
+
+@keyframes gameover {
+    from {font-size: 25px}
+    to {font-size: 65px}
+}
+
+#gameover button {
+    width: 150px;
+    height: 50px;
+    color: #ffffff;
+    background-color: #03810a;
+    border: none;
+    font-size: 20px;
+}
+
+#gameover button:hover {
+    background-color: #015706;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    padding: 0px;
+}
+
+footer p {
+    color: #ffffff;
+    font-size: 12px;
 }
