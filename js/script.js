@@ -67,6 +67,7 @@ function victoiry() {
 function boardEvent(event) {
     //jouer en appuyant sur la touche entrée
     if(event.keyCode == 13) {
+        
         startGame();
     }
 
@@ -81,21 +82,23 @@ function boardEvent(event) {
             var tir;
             tir = new sound("audios/tir_missile.mp3");
             tir.play();
-
+            /*
             var status = 0;
 
             for(var i = 1 ; i <= 10 ; i++) {
                 var alien = window["ennemie" + i];
                 if(alien.display == "none") {
                    status += 1;
-                   document.querySelector("#score2").innerHTML = status * 10;
+                   
                 }
             }
             if(status == 10) {
                 victoiry();
             }
+            */
         }
     }
+    
 
     //deplacements
     if(event.keyCode == 37 ) { /*deplacement a gauche*/
@@ -148,12 +151,15 @@ function shootByMouse(event) {
     }
 }
 
+var score = 0;
+
 function shootMissile() {
     userMissile.top -= 10;
     if(userMissile.top < -25) {
         userMissile.stopAnimation();
         userMissile.display = "none";
-    }      
+    }
+
     for(var i = 1 ; i <= 10 ; i++) {
         var alien = window["ennemie" + i];
         if(alien.display == "none") continue;
@@ -163,6 +169,10 @@ function shootMissile() {
             var y = alien.top - alien._node.height;
             
             explosion(x, y);
+
+            score += 10;
+
+            document.querySelector('#score2').innerHTML = score;
 
             var explosionSound;
 
@@ -174,12 +184,16 @@ function shootMissile() {
             alien.stopAnimation();
             alien.display = "none";
             userMissile.display = "none";
+
+            if(score == 100) {
+                victoiry();
+            }
             
         }
     } 
 }
 
-function shootAlienMissile() {
+/*function shootAlienMissile() {
 
     var alienMissile;
 
@@ -193,7 +207,7 @@ function shootAlienMissile() {
         setInterval(function() {alienMissile.startAnimation(function() {alienMissile.top += 10;}, 10);}, 3000);
 
     }
-}
+}*/
 
 
 //Collision entre vaisseau et alien
